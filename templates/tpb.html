@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>TPB</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+    </head>
+    <body>
+    <br>
+    <h1 class="tpbTitle">{{type}}</h1>
+    <div class="container"id="container">
+        {% for i in range(0, data|length) %}
+        <div class='movieDiv'>
+            <h3>{{data[i]['title']}}</h3>
+            <a class='movieBtn' href="{{data[i]['magnetLink']}}">Magnet Url</a>
+            <br>
+        </div>
+        {% endfor %}
+    </div>
+    </body>
+</html>
