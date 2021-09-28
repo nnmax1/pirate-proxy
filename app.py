@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request, jsonify
-from api import TPB_rss
+from api import rssParse
 
 app = Flask(__name__, template_folder='templates') 
 app.secret_key = '931uX0cj0wmQSlsZmZc2w1'
@@ -14,115 +14,128 @@ def homePage():
 # pages 
 @app.route('/top/movies')
 def movieNew():
-    res = TPB_rss('https://tpb.party/rss/top100/201')
-    return render_template("tpb.html", data=res, type="Top Movies")
+    res = rssParse('https://tpb.party/rss/top100/201')
+    return render_template("tpb.html", data=res, type="Top Movies", website='TPB')
 
 @app.route('/new/movies')
 def movieTop():
-    res = TPB_rss('https://tpb.party/rss/new/201')
-    return render_template("tpb.html", data=res, type="New Movies")
+    res = rssParse('https://tpb.party/rss/new/201')
+    return render_template("tpb.html", data=res, type="New Movies",website='TPB')
 
 @app.route('/top/hd/movies')
 def movieTopHD():
-    res = TPB_rss('https://tpb.party/rss/top100/207')
-    return render_template("tpb.html", data=res, type="Top HD Movies")
+    res = rssParse('https://tpb.party/rss/top100/207')
+    return render_template("tpb.html", data=res, type="Top HD Movies",website='TPB')
 
 @app.route('/new/hd/movies')
 def movieNewHD():
-    res = TPB_rss('https://tpb.party/rss/new/207')
-    return render_template("tpb.html", data=res, type="New HD Movies")
+    res = rssParse('https://tpb.party/rss/new/207')
+    return render_template("tpb.html", data=res, type="New HD Movies",website='TPB')
 
 
 
 @app.route('/top/tv')
 def tvTop():
-    res = TPB_rss('https://tpb.party/rss/top100/205')
-    return render_template("tpb.html", data=res,type='Top TV Shows')
+    res = rssParse('https://tpb.party/rss/top100/205')
+    return render_template("tpb.html", data=res,type='Top TV Shows',website='TPB')
 
 @app.route('/new/tv')
 def tvNew():
-    res = TPB_rss('https://tpb.party/rss/new/205')
-    return render_template("tpb.html", data=res,type='New TV Shows')
+    res = rssParse('https://tpb.party/rss/new/205')
+    return render_template("tpb.html", data=res,type='New TV Shows',website='TPB')
 
 @app.route('/top/hd/tv')
 def tvTopHD():
-    res = TPB_rss('https://tpb.party/rss/top100/208')
-    return render_template("tpb.html", data=res,type='Top HD TV Shows')
+    res = rssParse('https://tpb.party/rss/top100/208')
+    return render_template("tpb.html", data=res,type='Top HD TV Shows',website='TPB')
 
 @app.route('/new/hd/tv')
 def tvNewHD():
-    res = TPB_rss('https://tpb.party/rss/new/208')
-    return render_template("tpb.html", data=res,type='New HD TV Shows')
+    res = rssParse('https://tpb.party/rss/new/208')
+    return render_template("tpb.html", data=res,type='New HD TV Shows',website='TPB')
 
 
 
 @app.route('/top/music')
 def musicTop():
-    res = TPB_rss('https://tpb.party/rss/top100/101')
-    return render_template("tpb.html", data=res, type="Top Music")
+    res = rssParse('https://tpb.party/rss/top100/101')
+    return render_template("tpb.html", data=res, type="Top Music",website='TPB')
 
 @app.route('/new/music')
 def musicNew():
-    res = TPB_rss('https://tpb.party/rss/new/101')
-    return render_template("tpb.html", data=res, type="New Music")
+    res = rssParse('https://tpb.party/rss/new/101')
+    return render_template("tpb.html", data=res, type="New Music",website='TPB')
 
 
 
 @app.route('/top/lossless/music')
 def toplosslessmusic():
-    res = TPB_rss('https://tpb.party/rss/top100/104')
-    return render_template("tpb.html", data=res,type="Top Lossless")
+    res = rssParse('https://tpb.party/rss/top100/104')
+    return render_template("tpb.html", data=res,type="Top Lossless",website='TPB')
 
 @app.route('/top/audiobooks')
 def audiobooksTop():
-    res = TPB_rss('https://tpb.party/rss/top100/102')
-    return render_template("tpb.html", data=res, type='Top Audiobooks')
+    res = rssParse('https://tpb.party/rss/top100/102')
+    return render_template("tpb.html", data=res, type='Top Audiobooks',website='TPB')
 
 
 @app.route('/top/movies/porn')
 def topPornMovies():
-    res = TPB_rss('https://tpb.party/rss/top100/501')
-    return render_template("tpb.html", data=res,type='Top Porn Movies')
+    res = rssParse('https://tpb.party/rss/top100/501')
+    return render_template("tpb.html", data=res,type='Top Porn Movies',website='TPB')
 
 @app.route('/new/movies/porn')
 def newPornMovies():
-    res = TPB_rss('https://tpb.party/rss/new/501')
-    return render_template("tpb.html", data=res,type='New Porn Movies')
+    res = rssParse('https://tpb.party/rss/new/501')
+    return render_template("tpb.html", data=res,type='New Porn Movies',website='TPB')
 
 @app.route('/top/hd/movies/porn')
 def topHDPornMovies():
-    res = TPB_rss('https://tpb.party/rss/top100/505')
-    return render_template("tpb.html", data=res,type='Top HD Porn Movies')
+    res = rssParse('https://tpb.party/rss/top100/505')
+    return render_template("tpb.html", data=res,type='Top HD Porn Movies',website='TPB')
 
 @app.route('/new/hd/movies/porn')
 def newHDPornMovies():
-    res = TPB_rss('https://tpb.party/rss/new/505')
-    return render_template("tpb.html", data=res,type='New HD Porn Movies')
+    res = rssParse('https://tpb.party/rss/new/505')
+    return render_template("tpb.html", data=res,type='New HD Porn Movies',website='TPB')
 
 
 @app.route('/top/movieclips/porn')
 def topPornClipsMovies():
-    res = TPB_rss('https://tpb.party/rss/top100/506')
-    return render_template("tpb.html", data=res,type='Top Porn Movie Clips')
+    res = rssParse('https://tpb.party/rss/top100/506')
+    return render_template("tpb.html", data=res,type='Top Porn Movie Clips',website='TPB')
 
 @app.route('/new/movieclips/porn')
 def newPornClipsMovies():
-    res = TPB_rss('https://tpb.party/rss/new/506')
-    return render_template("tpb.html", data=res,type='New Porn Movie Clips')
-
-
+    res = rssParse('https://tpb.party/rss/new/506')
+    return render_template("tpb.html", data=res,type='New Porn Movie Clips',website='TPB')
 
 
 
 @app.route('/top/ebooks')
 def topEbooks():
-    res = TPB_rss('https://tpb.party/rss//top100/600')
-    return render_template("tpb.html", data=res,type='Top E-Books')
+    res = rssParse('https://tpb.party/rss//top100/600')
+    return render_template("tpb.html", data=res,type='Top E-Books',website='TPB')
 
 @app.route('/new/ebooks')
 def newEbooks():
-    res = TPB_rss('https://tpb.party/rss/new/601')
-    return render_template("tpb.html", data=res,type='New E-Books')
+    res = rssParse('https://tpb.party/rss/new/601')
+    return render_template("tpb.html", data=res,type='New E-Books',website='TPB')
+    
+
+@app.route('/yts/4k')
+def yts_4k():
+    res = rssParse('https://yts.mx/rss/0/2160p/all/0/all')
+    return render_template("tpb.html", data=res,type='YTS 4K',website='YTS')
+
+@app.route('/yts/1080p')
+def yts_1080p():
+    res = rssParse('https://yts.mx/rss/0/1080p/all/0/all')
+    return render_template("tpb.html", data=res,type='YTS 1080p',website='YTS')
+@app.route('/yts/720p')
+def yts_720p():
+    res = rssParse('https://yts.mx/rss/0/720p/all/0/all')
+    return render_template("tpb.html", data=res,type='YTS 720p',website='YTS')
     
 
 

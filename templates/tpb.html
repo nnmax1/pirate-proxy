@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>TPB</title>
+        <title>{{website}}</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
     </head>
     <body>
@@ -10,7 +10,7 @@
         {% for i in range(0, data|length) %}
         <div class='movieDiv'>
             <h3>{{data[i]['title']}}</h3>
-            <a class='movieBtn' href="{{data[i]['magnetLink']}}">Magnet Url</a>
+            <a class='movieBtn' href="{{data[i]['link']}}">Magnet Url</a>
             <br>
         </div>
         {% endfor %}
